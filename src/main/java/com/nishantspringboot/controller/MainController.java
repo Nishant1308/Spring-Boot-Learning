@@ -2,12 +2,14 @@ package com.nishantspringboot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
 
 	@GetMapping("/test")
+	@ResponseBody
 	public String firstHandler() {
-		return "home";
+		return "Nishant Gaurav";
 	}
 }
