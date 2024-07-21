@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>My Name is Nishant Gaurav.</h1>
+<h1>My Name is Nishant Gaurav.</h1>
 </body>
 </html>
