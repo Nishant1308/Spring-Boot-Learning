@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.nishantspringboot.user.entity.User;
-import com.nishantspringboot.user.repository.UserRepository;
+import com.nishantspringboot.entity.User;
+import com.nishantspringboot.repository.UserRepository;
 
 @SpringBootApplication
 public class NishantspringbootApplication {
