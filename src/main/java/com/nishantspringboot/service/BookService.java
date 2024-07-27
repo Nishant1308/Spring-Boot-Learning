@@ -1,59 +1,48 @@
 package com.nishantspringboot.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nishantspringboot.entity.Book;
+import com.nishantspringboot.repository.BookRepository;
 
 @Service
 public class BookService {
 
-	private static List<Book> list = new ArrayList<>();
-
-	static {
-		list.add(new Book(4567, "ghjkl", "rtyui"));
-		list.add(new Book(98765, "rtyuio", "ertyu"));
-		list.add(new Book(987, "fghjk", "rtyu"));
-	}
+	@Autowired
+	private BookRepository bookRepository;
 
 	// get All books
 	public List<Book> getAllBooks() {
+		List<Book> list = (List<Book>)this.bookRepository.findAll();
+		
 		return list;
 	}
 
 	// get book by id
 	public Book getBookById(int id) {
-		Book book = null;
-		try {
-			book = list.stream().filter(e -> e.getId() == id).findFirst().get();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Book book = this.bookRepository.findById(id);
+		
 		return book;
 	}
 
 	// add book
 	public Book addBook(Book b) {
-		list.add(b);
-		return b;
+		Book book = bookRepository.save(b);
+		return book;
 	}
 
 	// delete book
 	public void deleteBook(int id) {
-		list = list.stream().filter(e -> e.getId() != id).collect(Collectors.toList());
+		this.bookRepository.deleteById(id);
 	}
 
 	// update book
 	public void updateBook(Book book, int id) {
-		list = list.stream().map(b -> {
-			if (b.getId() == id) {
-				b.setAuthor(book.getAuthor());
-				b.setTitle(book.getTitle());
-			}
-			return b;
-		}).collect(Collectors.toList());
+		book.setId(id);
+		bookRepository.save(book);
 	}
 }
